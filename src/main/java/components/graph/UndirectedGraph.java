@@ -4,8 +4,9 @@ import java.util.HashMap;
 
 public class UndirectedGraph extends Graph {
 
-    public UndirectedGraph(HashMap<Integer, Integer[]> adjacencyList) {
-        super(adjacencyList, false);
+    public UndirectedGraph(Integer[][] adjacencyMatrix, boolean isWeighted) {
+        super(false, isWeighted);
+        super.fromAdjacencyMatrix(adjacencyMatrix);
     }
 
 }

@@ -9,6 +9,14 @@ public class DirectedEdge extends Edge {
 
     public DirectedEdge(Vertex begin, Vertex end) {
         super(begin, end);
+        super.setWeighted(false);
+        this.beginVertex = begin;
+        this.endVertex = end;
+    }
+    public DirectedEdge(Vertex begin, Vertex end, int weight) {
+        super(begin, end);
+        super.setWeight(weight);
+        super.setWeighted(true);
         this.beginVertex = begin;
         this.endVertex = end;
     }
