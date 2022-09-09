@@ -34,8 +34,4 @@ public abstract class Edge {
         isWeighted = weighted;
     }
 
-    @Override
-    public String toString() {
-        return ends[0] + " --- " + ends[1];
-    }
 }

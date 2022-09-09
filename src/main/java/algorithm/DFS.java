@@ -4,6 +4,7 @@ import algorithm.step.DetailedStep;
 import algorithm.step.EdgeStep;
 import algorithm.step.PseudoStep;
 import algorithm.step.VertexStep;
+import components.edge.Edge;
 import components.vertex.Vertex;
 
 import java.util.ArrayList;
@@ -37,19 +38,20 @@ public class DFS extends Algorithm {
         }
     }
     private void recursiveDFS(Vertex v) {
-        detailedStepList.put(detailedStepList.size(), new VertexStep(4, "DFS " + v));
+        detailedStepList.put(detailedStepList.size(), new VertexStep(4, v, "DFS " + v));
 
         visited.add(v);
-        detailedStepList.put(detailedStepList.size(), new VertexStep(5, "Set " + v + " as visited"));
+        detailedStepList.put(detailedStepList.size(), new VertexStep(5, v, "Set " + v + " as visited"));
 
         for (Vertex u : v.getNeighbors()) {
-            detailedStepList.put(detailedStepList.size(), new EdgeStep(6, "Try edge " + v + " → " + u));
+            Edge e = this.getGraph().findEdge(u, v);
+            detailedStepList.put(detailedStepList.size(), new EdgeStep(6,  e, "Try edge " + e));
             if (!visited.contains(u)) {
-                detailedStepList.put(detailedStepList.size(), new VertexStep(7, u + " is not visited"));
-                detailedStepList.put(detailedStepList.size(), new EdgeStep(7,"Add edge " + v + " ---→ " + u));
+                detailedStepList.put(detailedStepList.size(), new VertexStep(7, u, u + " is not visited"));
+                detailedStepList.put(detailedStepList.size(), new EdgeStep(7, e, "Add edge " + e));
                 recursiveDFS(u);
             } else {
-                detailedStepList.put(detailedStepList.size(), new VertexStep(7, u + " has already been visited"));
+                detailedStepList.put(detailedStepList.size(), new VertexStep(7, u,u + " has already been visited"));
             }
         }
     }
@@ -68,7 +70,7 @@ public class DFS extends Algorithm {
             }
             step = detailedStepList.get(index);
             System.out.println(pseudoStepList.get(step.getPseudoStepId()));
-            System.out.println("===" +  detailedStepList.get(index));
+            System.out.println("=== " +  detailedStepList.get(index));
 
         }
     }

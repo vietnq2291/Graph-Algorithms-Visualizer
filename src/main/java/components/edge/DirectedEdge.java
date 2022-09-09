@@ -28,4 +28,9 @@ public class DirectedEdge extends Edge {
     public Vertex getEndVertex() {
         return endVertex;
     }
+
+    @Override
+    public String toString() {
+        return this.getEnds()[0] + " ---→ " + this.getEnds()[1];
+    }
 }

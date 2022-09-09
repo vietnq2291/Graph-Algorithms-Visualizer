@@ -4,8 +4,11 @@ import components.vertex.Vertex;
 
 public class VertexStep extends DetailedStep {
 
-    public VertexStep (int pseudoStepId, String content) {
+    private Vertex vertex;
+
+    public VertexStep (int pseudoStepId, Vertex vertex, String content) {
         super(content);
         this.pseudoStepId = pseudoStepId;
+        this.vertex = vertex;
     }
 }

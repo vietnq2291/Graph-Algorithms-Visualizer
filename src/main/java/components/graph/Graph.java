@@ -62,6 +62,16 @@ public abstract class Graph {
         return v;
     }
 
+    public Edge findEdge(Vertex v1, Vertex v2) {
+        Vertex[] ends = new Vertex[2];
+        for (Edge e : edges) {
+            ends = e.getEnds();
+            if ((ends[0].equals(v1) && ends[1].equals(v2)) || (ends[0].equals(v2) && ends[1].equals(v1)))
+                return e;
+        }
+        return null;
+    }
+
     public void printGraph() {
         for (Vertex v : vertices.values()) {
             System.out.println(v.getId() + ": " + v.getNeighbors());

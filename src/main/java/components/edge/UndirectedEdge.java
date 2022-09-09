@@ -13,4 +13,9 @@ public class UndirectedEdge extends Edge {
         super.setWeight(weight);
         super.setWeighted(true);
     }
+
+    @Override
+    public String toString() {
+        return this.getEnds()[0] + " ---- " + this.getEnds()[1];
+    }
 }
