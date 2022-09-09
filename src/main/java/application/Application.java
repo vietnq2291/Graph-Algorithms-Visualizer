@@ -31,9 +31,6 @@ public class Application extends javafx.application.Application {
 
         DFS dfs = new DFS();
         dfs.setGraph(ug2);
-
-        dfs.execute();
-
         Context context = new Context();
         context.setAlgorithm(dfs);
         context.setController(controller);

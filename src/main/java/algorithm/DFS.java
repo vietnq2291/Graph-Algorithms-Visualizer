@@ -1,5 +1,6 @@
 package algorithm;
 
+import algorithm.step.DetailedStep;
 import algorithm.step.EdgeStep;
 import algorithm.step.PseudoStep;
 import algorithm.step.VertexStep;
@@ -34,6 +35,7 @@ public class DFS extends Algorithm {
                 recursiveDFS(v);
             }
         }
+        detailedStepList.add(new DetailedStep("Finish DFS"));
     }
     private void recursiveDFS(Vertex v) {
         detailedStepList.add(new VertexStep(4, v, "DFS " + v));
@@ -53,24 +55,4 @@ public class DFS extends Algorithm {
             }
         }
     }
-
-//    public void print() {
-//        Scanner sc = new Scanner(System.in);
-//        DetailedStep step;
-//        int cmd;
-//        int index = 0;
-//        while (true) {
-//            cmd = sc.nextInt();
-//            if (cmd == 0) {
-//                index -= 1;
-//            } else {
-//                index += 1;
-//            }
-//            step = detailedStepList.get(index);
-//            System.out.println(pseudoStepList.get(step.getPseudoStepId()));
-//            System.out.println("=== " +  detailedStepList.get(index));
-//
-//        }
-//    }
-
 }

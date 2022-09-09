@@ -5,9 +5,11 @@
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
 <?import java.util.ArrayList?>
@@ -18,10 +20,14 @@
             <Insets top="20.0" />
          </BorderPane.margin>
          <children>
-            <VBox layoutX="543.0" layoutY="310.0" prefHeight="270.0" prefWidth="359.0" style="-fx-background-color: white;">
+            <VBox layoutX="543.0" layoutY="310.0" prefHeight="270.0" prefWidth="359.0" spacing="5.0" style="-fx-background-color: white;">
                <children>
-                  <Label fx:id="pseudoText11" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="50"/>
-                  <VBox fx:id="pseudoStepsDisplay" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="194.0" prefWidth="407.0">
+                  <StackPane fx:id="detailedStepDisplay" prefHeight="60.0" prefWidth="200.0" style="-fx-background-color: rgb(167, 212, 30);">
+                     <padding>
+                        <Insets bottom="10.0" />
+                     </padding>
+                  </StackPane>
+                  <VBox fx:id="pseudoStepsDisplay" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="194.0" prefWidth="407.0" style="-fx-background-color: rgb(254, 197, 21);">
                      <fx:define>
                         <ArrayList fx:id="pseudoTextList">
                         </ArrayList>
@@ -31,6 +37,9 @@
                      </padding>
                   </VBox>
                </children>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
             </VBox>
          </children></AnchorPane>
    </center>
@@ -58,4 +67,13 @@
          </children>
       </HBox>
    </top>
+   <bottom>
+      <AnchorPane prefHeight="77.0" prefWidth="1024.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="backButton" layoutX="397.0" layoutY="24.0" mnemonicParsing="false" onAction="#goToPreviousStep" text="Previous" />
+            <Button fx:id="nextButton" layoutX="512.0" layoutY="24.0" mnemonicParsing="false" onAction="#goToNextStep" text="Next" />
+            <ProgressBar fx:id="stepProgress" layoutX="138.0" layoutY="29.0" prefHeight="21.0" prefWidth="214.0" progress="0.0" />
+         </children>
+      </AnchorPane>
+   </bottom>
 </BorderPane>

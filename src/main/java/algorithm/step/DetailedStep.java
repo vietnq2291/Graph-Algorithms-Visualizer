@@ -1,11 +1,16 @@
 package algorithm.step;
 
+import javafx.geometry.Insets;
+
 public class DetailedStep extends PseudoStep {
 
     protected int pseudoStepId;
 
     public DetailedStep(String content) {
         super(content);
+        this.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+        this.setPadding(new Insets(20));
+        this.setStyle("-fx-background-color: rgb(167, 212, 30)");
     }
 
     public int getPseudoStepId() {
