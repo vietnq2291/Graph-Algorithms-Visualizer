@@ -1,6 +1,5 @@
 package algorithm;
 
-import algorithm.step.DetailedStep;
 import algorithm.step.EdgeStep;
 import algorithm.step.PseudoStep;
 import algorithm.step.VertexStep;
@@ -9,7 +8,6 @@ import components.vertex.Vertex;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class DFS extends Algorithm {
 
@@ -20,13 +18,13 @@ public class DFS extends Algorithm {
     }
 
     private void buildPseudoSteps() {
-        pseudoStepList.put(1, new PseudoStep("traverse(graph):"));
-        pseudoStepList.put(2, new PseudoStep("  for each v in graph:"));
-        pseudoStepList.put(3, new PseudoStep("    if v is not visited, DFS(v)"));
-        pseudoStepList.put(4, new PseudoStep("DFS(v):"));
-        pseudoStepList.put(5, new PseudoStep("  set v as visited"));
-        pseudoStepList.put(6, new PseudoStep("  for each neighbor u of v:"));
-        pseudoStepList.put(7, new PseudoStep("    if u is not visited, DFS(u)"));
+        pseudoStepList.add(new PseudoStep("traverse(graph):"));
+        pseudoStepList.add(new PseudoStep("\tfor each v in graph:"));
+        pseudoStepList.add(new PseudoStep("\t\tif v is not visited, DFS(v)"));
+        pseudoStepList.add(new PseudoStep("DFS(v):"));
+        pseudoStepList.add(new PseudoStep("\tset v as visited"));
+        pseudoStepList.add(new PseudoStep("\tfor each neighbor u of v:"));
+        pseudoStepList.add(new PseudoStep("\t\tif u is not visited, DFS(u)"));
     }
 
     public void execute() {
@@ -38,41 +36,41 @@ public class DFS extends Algorithm {
         }
     }
     private void recursiveDFS(Vertex v) {
-        detailedStepList.put(detailedStepList.size(), new VertexStep(4, v, "DFS " + v));
+        detailedStepList.add(new VertexStep(4, v, "DFS " + v));
 
         visited.add(v);
-        detailedStepList.put(detailedStepList.size(), new VertexStep(5, v, "Set " + v + " as visited"));
+        detailedStepList.add(new VertexStep(5, v, "Set " + v + " as visited"));
 
         for (Vertex u : v.getNeighbors()) {
             Edge e = this.getGraph().findEdge(u, v);
-            detailedStepList.put(detailedStepList.size(), new EdgeStep(6,  e, "Try edge " + e));
+            detailedStepList.add(new EdgeStep(6,  e, "Try edge " + e));
             if (!visited.contains(u)) {
-                detailedStepList.put(detailedStepList.size(), new VertexStep(7, u, u + " is not visited"));
-                detailedStepList.put(detailedStepList.size(), new EdgeStep(7, e, "Add edge " + e));
+                detailedStepList.add(new VertexStep(7, u, u + " is not visited"));
+                detailedStepList.add(new EdgeStep(7, e, "Add edge " + e));
                 recursiveDFS(u);
             } else {
-                detailedStepList.put(detailedStepList.size(), new VertexStep(7, u,u + " has already been visited"));
+                detailedStepList.add(new VertexStep(7, u,u + " has already been visited"));
             }
         }
     }
 
-    public void print() {
-        Scanner sc = new Scanner(System.in);
-        DetailedStep step;
-        int cmd;
-        int index = 0;
-        while (true) {
-            cmd = sc.nextInt();
-            if (cmd == 0) {
-                index -= 1;
-            } else {
-                index += 1;
-            }
-            step = detailedStepList.get(index);
-            System.out.println(pseudoStepList.get(step.getPseudoStepId()));
-            System.out.println("=== " +  detailedStepList.get(index));
-
-        }
-    }
+//    public void print() {
+//        Scanner sc = new Scanner(System.in);
+//        DetailedStep step;
+//        int cmd;
+//        int index = 0;
+//        while (true) {
+//            cmd = sc.nextInt();
+//            if (cmd == 0) {
+//                index -= 1;
+//            } else {
+//                index += 1;
+//            }
+//            step = detailedStepList.get(index);
+//            System.out.println(pseudoStepList.get(step.getPseudoStepId()));
+//            System.out.println("=== " +  detailedStepList.get(index));
+//
+//        }
+//    }
 
 }

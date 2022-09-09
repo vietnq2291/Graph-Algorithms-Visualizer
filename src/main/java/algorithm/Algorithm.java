@@ -12,16 +12,15 @@ import java.util.List;
 public abstract class Algorithm {
 
     private Graph graph;
-    protected HashMap<Integer, PseudoStep> pseudoStepList;
-    protected HashMap<Integer, DetailedStep> detailedStepList;
+    protected List<PseudoStep> pseudoStepList;
+    protected List<DetailedStep> detailedStepList;
 
     public Algorithm() {
-        pseudoStepList = new HashMap<>();
-        detailedStepList = new HashMap<>();
+        pseudoStepList = new ArrayList<>();
+        detailedStepList = new ArrayList<>();
     }
 
     public abstract void execute();
-    public abstract void print(); // -----temp
 
     public Graph getGraph() {
         return graph;
@@ -29,5 +28,13 @@ public abstract class Algorithm {
 
     public void setGraph(Graph graph) {
         this.graph = graph;
+    }
+
+    public List<PseudoStep> getPseudoStepList() {
+        return pseudoStepList;
+    }
+
+    public List<DetailedStep> getDetailedStepList() {
+        return detailedStepList;
     }
 }

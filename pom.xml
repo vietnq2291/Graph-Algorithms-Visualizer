@@ -61,7 +61,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                application.graphalgorithmsvisualizer/application.HelloApplication
+                                application.graphalgorithmsvisualizer/application.Application
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>

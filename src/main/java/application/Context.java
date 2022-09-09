@@ -5,10 +5,11 @@ import algorithm.Algorithm;
 public class Context {
 
     private Algorithm algorithm;
+    private Controller controller;
 
     public void run() {
         algorithm.execute();
-        algorithm.print();
+        controller.displaySteps(algorithm.getPseudoStepList(), algorithm.getDetailedStepList());
     }
 
     public Algorithm getAlgorithm() {
@@ -17,5 +18,13 @@ public class Context {
 
     public void setAlgorithm(Algorithm algorithm) {
         this.algorithm = algorithm;
+    }
+
+    public Controller getController() {
+        return controller;
+    }
+
+    public void setController(Controller controller) {
+        this.controller = controller;
     }
 }
