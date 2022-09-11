@@ -7,8 +7,7 @@ public class VertexStep extends DetailedStep {
     private Vertex vertex;
 
     public VertexStep (int pseudoStepId, Vertex vertex, String content) {
-        super(content);
-        this.pseudoStepId = pseudoStepId;
+        super(pseudoStepId, content);
         this.vertex = vertex;
     }
 }

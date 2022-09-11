@@ -7,8 +7,7 @@ public class EdgeStep extends DetailedStep {
     private Edge edge;
 
     public EdgeStep (int pseudoStepId, Edge edge, String content) {
-        super(content);
-        this.pseudoStepId = pseudoStepId;
+        super(pseudoStepId, content);
         this.edge = edge;
     }
 }

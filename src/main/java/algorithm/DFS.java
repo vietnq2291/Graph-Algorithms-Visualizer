@@ -19,6 +19,7 @@ public class DFS extends Algorithm {
     }
 
     private void buildPseudoSteps() {
+        pseudoStepList.add(new PseudoStep("Ready"));
         pseudoStepList.add(new PseudoStep("traverse(graph):"));
         pseudoStepList.add(new PseudoStep("\tfor each v in graph:"));
         pseudoStepList.add(new PseudoStep("\t\tif v is not visited, DFS(v)"));
@@ -26,16 +27,24 @@ public class DFS extends Algorithm {
         pseudoStepList.add(new PseudoStep("\tset v as visited"));
         pseudoStepList.add(new PseudoStep("\tfor each neighbor u of v:"));
         pseudoStepList.add(new PseudoStep("\t\tif u is not visited, DFS(u)"));
+        pseudoStepList.add(new PseudoStep("Finish"));
     }
 
     public void execute() {
         visited = new ArrayList<>();
+        detailedStepList.add(new DetailedStep(0, "Ready"));
+
+        detailedStepList.add(new DetailedStep(1, "Traverse all unvisited vertices"));
         for (Vertex v : this.getGraph().getVertices().values()) {
+            detailedStepList.add(new VertexStep(2, v, "Try vertex " + v));
             if (!visited.contains(v)) {
+                detailedStepList.add(new VertexStep(3, v, v + " is not visited"));
                 recursiveDFS(v);
+            } else {
+                detailedStepList.add(new VertexStep(3, v,v + " has already been visited"));
             }
         }
-        detailedStepList.add(new DetailedStep("Finish DFS"));
+        detailedStepList.add(new DetailedStep(8,"Finish DFS"));
     }
     private void recursiveDFS(Vertex v) {
         detailedStepList.add(new VertexStep(4, v, "DFS " + v));
