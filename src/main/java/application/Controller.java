@@ -45,7 +45,6 @@ public class Controller implements Initializable {
             previousTop.toBack();
             DetailedStep currentTop = (DetailedStep) children.get(children.size()-1);
 
-            stepProgress.setProgress(currentStepId * progressIncrement);
             showNewPseudoStep(previousTop, currentTop);
         }
     }
@@ -58,7 +57,6 @@ public class Controller implements Initializable {
             children.get(0).toFront();
             DetailedStep currentTop = (DetailedStep) children.get(children.size()-1);
 
-            stepProgress.setProgress(currentStepId * progressIncrement);
             showNewPseudoStep(previousTop, currentTop);
         }
     }
@@ -69,6 +67,7 @@ public class Controller implements Initializable {
 
         previousPseudoStep.setStyleInactive();
         currentPseudoStep.setStyleActive();
+        stepProgress.setProgress(currentStepId * progressIncrement);
     }
 
 
