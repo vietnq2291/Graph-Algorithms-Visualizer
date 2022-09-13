@@ -15,7 +15,7 @@
 <?import java.util.ArrayList?>
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
    <center>
-      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="580.0" prefWidth="900.0" style="-fx-background-color: #808080;" BorderPane.alignment="TOP_CENTER">
+      <AnchorPane fx:id="playground" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="580.0" prefWidth="900.0" style="-fx-background-color: #808080;" BorderPane.alignment="TOP_CENTER">
          <BorderPane.margin>
             <Insets top="20.0" />
          </BorderPane.margin>

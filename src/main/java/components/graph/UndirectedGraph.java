@@ -8,5 +8,9 @@ public class UndirectedGraph extends Graph {
         super(false, isWeighted);
         super.fromAdjacencyMatrix(adjacencyMatrix);
     }
+    public UndirectedGraph(boolean isWeighted) {
+        super(false, isWeighted);
+        super.generateGraph();
+    }
 
 }

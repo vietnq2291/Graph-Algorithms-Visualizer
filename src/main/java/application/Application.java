@@ -28,6 +28,7 @@ public class Application extends javafx.application.Application {
         };
         UndirectedGraph ug2 = new UndirectedGraph(graph2, true);
         ug2.printGraph();
+        ug2.setAutoPosition();
 
         DFS dfs = new DFS();
         dfs.setGraph(ug2);

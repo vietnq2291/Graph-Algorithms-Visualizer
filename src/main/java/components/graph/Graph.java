@@ -8,6 +8,8 @@ import components.vertex.Vertex;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
+import java.util.*;
 
 public abstract class Graph {
 
@@ -28,6 +30,9 @@ public abstract class Graph {
         Vertex fromVertex;
         Vertex toVertex;
         Edge edge;
+
+        this.vertices.clear();
+        this.edges.clear();
 
         for (int from = 0; from < matrixSize; from++) {
             fromVertex = makeVertex(from);
@@ -63,7 +68,7 @@ public abstract class Graph {
     }
 
     public Edge findEdge(Vertex v1, Vertex v2) {
-        Vertex[] ends = new Vertex[2];
+        Vertex[] ends;
         for (Edge e : edges) {
             ends = e.getEnds();
             if ((ends[0].equals(v1) && ends[1].equals(v2)) || (ends[0].equals(v2) && ends[1].equals(v1)))
@@ -74,7 +79,7 @@ public abstract class Graph {
 
     public void printGraph() {
         for (Vertex v : vertices.values()) {
-            System.out.println(v.getId() + ": " + v.getNeighbors());
+            System.out.println(v + " (" + v.getLayoutX() + ", " + v.getLayoutY() + ")" + ": " + v.getNeighbors());
         }
         System.out.println();
 
@@ -87,7 +92,33 @@ public abstract class Graph {
         return vertices;
     }
 
-    public List<Edge> getEdges() {
-        return edges;
+    public void generateGraph() {
+        Random r = new Random();
+        int size = r.nextInt(10);
+        Integer[][] matrix = new Integer[size][size];
+
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                matrix[i][j] = r.nextInt();
+            }
+        }
+
+        fromAdjacencyMatrix(matrix);
+        setAutoPosition();
+    }
+    public void setAutoPosition() {
+        double degree = (2 * Math.PI) / vertices.size();
+        double radius = 200.0;
+
+        double x, y;
+        for (int i = 0; i < vertices.size(); i++) {
+            x = Math.cos(degree * i) * radius + 270;
+            y = Math.sin(degree * i) * radius + 290;
+            vertices.get(i).setLayout(x, y);
+
+            System.out.println("i = " + i + ", cos(" + (degree * i) + ") = " + Math.cos(degree*i));
+            System.out.println("x = " + x + ", y = " + y);
+            System.out.println(vertices.get(i) + ": (" + vertices.get(i).getLayoutX() + ", " + vertices.get(i).getLayoutY() + ")");
+        }
     }
 }

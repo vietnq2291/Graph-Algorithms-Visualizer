@@ -8,6 +8,7 @@ public class Context {
     private Controller controller;
 
     public void run() {
+        controller.displayGraph(algorithm.getGraph());
         algorithm.execute();
         controller.displaySteps(algorithm.getPseudoStepList(), algorithm.getDetailedStepList());
     }

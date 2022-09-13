@@ -2,20 +2,26 @@ package application;
 
 import algorithm.step.DetailedStep;
 import algorithm.step.PseudoStep;
+import components.graph.Graph;
+import components.vertex.Vertex;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Circle;
 
 import java.net.URL;
 import java.util.*;
 
 public class Controller implements Initializable {
 
+    @FXML
+    private AnchorPane playground;
     @FXML
     private List<Label> pseudoTextList;
     @FXML
@@ -25,8 +31,11 @@ public class Controller implements Initializable {
     @FXML
     private ProgressBar stepProgress;
 
+
+//    private List<Vertex> vertices;
     double progressIncrement;
     int currentStepId;
+
 
 
 
@@ -70,7 +79,6 @@ public class Controller implements Initializable {
         stepProgress.setProgress(currentStepId * progressIncrement);
     }
 
-
     public void displaySteps(List<PseudoStep> pseudoStepList, List<DetailedStep> detailedStepList) {
         int lineHeight = (int) (pseudoStepsDisplay.getHeight()) / pseudoStepList.size();
         progressIncrement = 1.0 / (detailedStepList.size() - 1);
@@ -84,5 +92,14 @@ public class Controller implements Initializable {
         Collections.reverse(detailedStepList);
         detailedStepDisplay.getChildren().addAll(detailedStepList);
         ((PseudoStep) pseudoStepsDisplay.getChildren().get(0)).setStyleActive();
+    }
+
+    public void displayGraph(Graph graph) {
+//        vertices = new ArrayList<>();
+//        vertices.addAll(graph.getVertices().values());
+//        playground.getChildren().addAll(vertices);
+        playground.getChildren().addAll(graph.getVertices().values());
+//        playground.getChildren().add(new Vertex(2));
+
     }
 }
