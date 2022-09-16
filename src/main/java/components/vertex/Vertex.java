@@ -1,5 +1,6 @@
 package components.vertex;
 
+import components.status.Status;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Circle;
@@ -10,8 +11,9 @@ import java.util.List;
 public class Vertex extends StackPane {
 
     private String CIRCLE_FREE_STYLE = "-fx-fill:white;-fx-stroke-width:2px;-fx-stroke:black;";
-    private String CIRCLE_SELECTED_STYLE = "-fx-fill:green;-fx-stroke-width:2px;-fx-stroke:black;";
-    private String CIRCLE_FINISHED_STYLE = "-fx-fill:orange;-fx-stroke-width:2px;-fx-stroke:black;";
+    private String CIRCLE_VISITING_STYLE = "-fx-fill:green;-fx-stroke-width:2px;-fx-stroke:black;";
+    private String CIRCLE_SELECTED_STYLE = "-fx-fill:orange;-fx-stroke-width:2px;-fx-stroke:black;";
+    private String CIRCLE_FINISHED_STYLE = "-fx-fill:purple;-fx-stroke-width:2px;-fx-stroke:black;";
 
     private static double radius = 20;
 
@@ -37,7 +39,7 @@ public class Vertex extends StackPane {
         // Set display of Vertex as Circle with name as Label
         circle = new Circle();
         circle.setRadius(radius);
-        setVertexFreeStyle();
+        setVertexStyle(Status.FREE);
 
         Label txt = new Label(String.valueOf(this.name));
         txt.setStyle("-fx-font-size:18px;-fx-font-weight:bold;");
@@ -69,16 +71,13 @@ public class Vertex extends StackPane {
         }
     }
 
-    public void setVertexSelectedStyle() {
-        circle.setStyle(CIRCLE_SELECTED_STYLE);
-    }
-
-    public void setVertexFinishedStyle() {
-        circle.setStyle(CIRCLE_FINISHED_STYLE);
-    }
-
-    public void setVertexFreeStyle() {
-        circle.setStyle(CIRCLE_FREE_STYLE);
+    public void setVertexStyle(Status status) {
+        switch (status) {
+            case VISITING -> circle.setStyle(CIRCLE_VISITING_STYLE);
+            case SELECTED -> circle.setStyle(CIRCLE_SELECTED_STYLE);
+            case FREE -> circle.setStyle(CIRCLE_FREE_STYLE);
+            case FINISHED -> circle.setStyle(CIRCLE_FINISHED_STYLE);
+        }
     }
 
     public void setLayout(double layoutX, double layoutY) {

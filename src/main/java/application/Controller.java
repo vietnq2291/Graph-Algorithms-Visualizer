@@ -1,5 +1,6 @@
 package application;
 
+import algorithm.step.Activable;
 import algorithm.step.DetailedStep;
 import algorithm.step.PseudoStep;
 import components.graph.Graph;
@@ -31,8 +32,6 @@ public class Controller implements Initializable {
     @FXML
     private ProgressBar stepProgress;
 
-
-//    private List<Vertex> vertices;
     double progressIncrement;
     int currentStepId;
 
@@ -54,7 +53,7 @@ public class Controller implements Initializable {
             previousTop.toBack();
             DetailedStep currentTop = (DetailedStep) children.get(children.size()-1);
 
-            showNewPseudoStep(previousTop, currentTop);
+            updateStep(previousTop, currentTop);
         }
     }
     public void goToPreviousStep() {
@@ -66,16 +65,21 @@ public class Controller implements Initializable {
             children.get(0).toFront();
             DetailedStep currentTop = (DetailedStep) children.get(children.size()-1);
 
-            showNewPseudoStep(previousTop, currentTop);
+            updateStep(previousTop, currentTop);
         }
     }
 
-    private void showNewPseudoStep(DetailedStep previousTop, DetailedStep currentTop) {
+    private void updateStep(DetailedStep previousTop, DetailedStep currentTop) {
         PseudoStep previousPseudoStep = (PseudoStep) pseudoStepsDisplay.getChildren().get(previousTop.getPseudoStepId());
         PseudoStep currentPseudoStep = (PseudoStep) pseudoStepsDisplay.getChildren().get(currentTop.getPseudoStepId());
 
         previousPseudoStep.setStyleInactive();
         currentPseudoStep.setStyleActive();
+
+        if (previousTop instanceof Activable)
+            ((Activable) previousTop).setInactive();
+        if (currentTop instanceof Activable)
+            ((Activable) currentTop).setActive();
         stepProgress.setProgress(currentStepId * progressIncrement);
     }
 

@@ -2,7 +2,7 @@ package algorithm.step;
 
 import javafx.geometry.Insets;
 
-public class DetailedStep extends PseudoStep {
+public class DetailedStep extends PseudoStep{
 
     protected int pseudoStepId;
 

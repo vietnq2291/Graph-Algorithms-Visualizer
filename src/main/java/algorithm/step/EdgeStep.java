@@ -2,7 +2,7 @@ package algorithm.step;
 
 import components.edge.Edge;
 
-public class EdgeStep extends DetailedStep {
+public class EdgeStep extends DetailedStep {// implements Activable {
 
     private Edge edge;
 
